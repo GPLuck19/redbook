@@ -1,0 +1,30 @@
+{
+    "mcpServers": {
+        "server-filesystem": {
+            "command": "D:\\software\\nvm\\v22.9.0\\npx.cmd",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-filesystem",
+                "D:\\agent\\mcp-client\\target"
+            ],
+            "env": {
+            }
+        },
+        "baidu-map": {
+            "command": "D:\\software\\nvm\\v22.9.0\\npx.cmd",
+            "args": [
+                "-y",
+                "@baidumap/mcp-server-baidu-map"
+            ],
+            "env": {
+                "BAIDU_MAP_API_KEY": "lSpCL6ueQncXtDLwIWEeF4ugKK2VXBPn"
+            }
+        },
+        "playwright": {
+            "command": "D:\\software\\nvm\\v22.9.0\\npx.cmd",
+            "args": [
+                "@playwright/mcp@latest"
+            ]
+        }
+    }
+}

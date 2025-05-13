@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gp.mapper.TAiMessageMapper">
+
+    <resultMap id="BaseResultMap" type="com.gp.entity.TAiMessage">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
+            <result property="creatorId" column="creator_id" jdbcType="VARCHAR"/>
+            <result property="type" column="type" jdbcType="VARCHAR"/>
+            <result property="textContent" column="text_content" jdbcType="VARCHAR"/>
+            <result property="medias" column="medias" jdbcType="OTHER"/>
+            <result property="aiSessionId" column="ai_session_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,created_time,creator_id,
+        type,text_content,medias,
+        ai_session_id
+    </sql>
+</mapper>

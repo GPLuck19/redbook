@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gp.mapper.TGoodsMapper">
+
+    <resultMap id="BaseResultMap" type="com.gp.entity.TGoods">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="goodsname" column="goodsname" jdbcType="VARCHAR"/>
+            <result property="tags" column="tags" jdbcType="VARCHAR"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="mt" column="mt" jdbcType="VARCHAR"/>
+            <result property="mtname" column="mtName" jdbcType="VARCHAR"/>
+            <result property="st" column="st" jdbcType="VARCHAR"/>
+            <result property="stname" column="stName" jdbcType="VARCHAR"/>
+            <result property="grade" column="grade" jdbcType="VARCHAR"/>
+            <result property="pic" column="pic" jdbcType="VARCHAR"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="ispub" column="isPub" jdbcType="VARCHAR"/>
+            <result property="price" column="price" jdbcType="DECIMAL"/>
+            <result property="priceold" column="priceOld" jdbcType="DECIMAL"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="delFlag" column="del_flag" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,goodsname,tags,
+        username,mt,mtName,
+        st,stName,grade,
+        pic,description,isPub,
+        price,priceOld,create_time,
+        update_time,del_flag
+    </sql>
+</mapper>

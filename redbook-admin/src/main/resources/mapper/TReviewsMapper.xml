@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gp.mapper.TReviewsMapper">
+
+    <resultMap id="BaseResultMap" type="com.gp.entity.TReviews">
+            <id property="reviewId" column="review_id" jdbcType="BIGINT"/>
+            <result property="targetId" column="target_id" jdbcType="BIGINT"/>
+            <result property="targetType" column="target_type" jdbcType="VARCHAR"/>
+            <result property="reviewerId" column="reviewer_id" jdbcType="BIGINT"/>
+            <result property="reviewerName" column="reviewer_name" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
+            <result property="reason" column="reason" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="delFlag" column="del_flag" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        review_id,target_id,target_type,
+        reviewer_id,reviewer_name,status,
+        reason,create_time,update_time,
+        del_flag
+    </sql>
+</mapper>

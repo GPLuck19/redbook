@@ -1,0 +1,285 @@
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为8080
+  port: 9000
+  servlet:
+    # 应用的访问路径
+    context-path: /
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # 连接数满后的排队数，默认为100
+    accept-count: 1000
+    threads:
+      # tomcat最大线程数，默认为200
+      max: 800
+      # Tomcat启动初始化的线程数，默认值10
+      min-spare: 100
+
+# 用户配置
+user:
+  password:
+    # 密码最大错误次数
+    maxRetryCount: 5
+    # 密码锁定时间（默认10分钟）
+    lockTime: 10
+
+sms:
+  # 配置源类型用于标定配置来源(interface,yaml)
+  config-type: yaml
+  # 用于标定yml中的配置是否开启短信拦截，接口配置不受此限制
+  restricted: true
+  # 短信拦截限制单手机号每分钟最大发送，只对开启了拦截的配置有效
+  minute-max: 1
+  # 短信拦截限制单手机号每日最大发送量，只对开启了拦截的配置有效
+  account-max: 30
+  # 以下配置来自于 org.dromara.sms4j.provider.config.BaseConfig类中
+  blends:
+    # 唯一ID 用于发送短信寻找具体配置 随便定义别用中文即可
+    # 可以同时存在两个相同厂商 例如: ali1 ali2 两个不同的阿里短信账号 也可用于区分租户
+    config1:
+      # 框架定义的厂商名称标识，标定此配置是哪个厂商，详细请看厂商标识介绍部分
+      supplier: alibaba
+      # 有些称为accessKey有些称之为apiKey，也有称为sdkKey或者appId。
+      access-key-id: 您的accessKey
+      # 称为accessSecret有些称之为apiSecret
+      access-key-secret: 您的accessKeySecret
+      signature: 您的短信签名
+      sdk-app-id: 您的sdkAppId
+
+pay:
+  alipay:
+    alipay-public-key: key
+    app-id: id
+    charset: UTF8
+    format: json
+    notify-url: http://ems8b7.natappfree.cc/api/pay-service/callback/alipay
+    private-key: key
+    server-url: https://openapi-sandbox.dl.alipaydev.com/gateway.do
+    sign-type: RSA2
+
+weixinpay:
+  app-id: key
+  mch-id: id
+  mch-key: key
+  notify-url: http://ip:8848/content/order/order-pay/wx-pay/notify-result
+  trade-type: NATIVE
+
+xxl:
+  job:
+    admin:
+      addresses: http://localhost:9005/xxl-job-admin
+    accessToken: default_token
+    executor:
+      appname: xxl-job-executor-first
+      address:
+      ip:
+      port: 9999
+      logpath: /data/applogs/xxl-job/jobhandler
+      logretentiondays: 30
+
+spring:
+  mail:
+    host: smtp.qq.com
+    username: name
+    password: QQ邮箱申请的授权码
+    port: 587
+    from: name
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
+        debug: true
+  ai:
+    chat:
+      client:
+        enabled: true
+    vectorstore:
+      milvus:
+        client:
+          host: ip
+          port: 19530
+        databaseName: "default"
+        collectionName: "vector_store"
+        embeddingDimension: 1536
+        indexType: IVF_FLAT
+        metricType: COSINE
+        initialize-schema: true
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: modle
+      embedding:
+        options:
+          model: nomic-embed-text
+    mcp:
+      client:
+        request-timeout: 60000
+        stdio:
+          servers-configuration: classpath:mcp-servers-config.json
+  elasticsearch:
+    uris: http://ip:9200
+    username: elastic
+    password: SBksmZ7DOG0ApddEg0MK
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://ip:3306/redbook?userUnicode=true&useSSL=false&characterEncoding=utf8
+    password: password
+    username: root
+    hikari:
+      pool-name: DateHikariCP
+      minimum-idle: 10
+      idle-timeout: 180000
+      maximum-pool-size: 10
+      auto-commit: true
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  threads:
+    # 开启虚拟线程 仅jdk21可用
+    virtual:
+      enabled: false
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: i18n/messages
+  servlet:
+    multipart:
+      # 整个请求大小限制
+      max-request-size: 20MB
+      # 上传单个文件大小限制
+      max-file-size: 10MB
+  mvc:
+    # 设置静态资源路径 防止所有请求都去查静态资源
+    static-path-pattern: /static/**
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
+  #jackson配置
+  jackson:
+    # 日期格式化
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      # 格式化输出
+      INDENT_OUTPUT: false
+      # 忽略无法转换的对象
+      fail_on_empty_beans: false
+    deserialization:
+      # 允许对象忽略json中不存在的属性
+      fail_on_unknown_properties: false
+
+  # redis通用配置 子服务可以自行配置进行覆盖
+  data:
+    redis:
+      client-type: lettuce
+      host: ip
+      database: 0
+      port: 6379
+      password: password
+      lettuce:
+        pool:
+          enabled: true
+          max-active: 10
+          max-wait: 2s
+          max-idle: 8
+          min-idle: 0
+
+sse:
+  enabled: true
+
+websocket:
+  # 如果关闭 需要和前端开关一起关闭
+  enabled: true
+  # 路径
+  path: /websocket
+  # 设置访问源地址
+  allowedOrigins: '*'
+
+# Sa-Token配置
+sa-token:
+  # token名称 (同时也是cookie名称)
+  token-name: Authorization
+  # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时新登录挤掉旧登录)
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
+  is-share: false
+  # jwt秘钥
+  jwt-secret-key: abcdefghijklmnopqrstuvwxyz
+
+# 分布式锁 lock4j 全局配置
+lock4j:
+  # 获取分布式锁超时时间，默认为 3000 毫秒
+  acquire-timeout: 3000
+  # 分布式锁的超时时间，默认为 30 秒
+  expire: 30000
+
+# redisson 配置
+redisson:
+  # redis key前缀
+  keyPrefix:
+  # 线程池数量
+  threads: 4
+  # Netty线程池数量
+  nettyThreads: 8
+  # 单节点配置
+  singleServerConfig:
+    # 客户端名称
+    clientName: ${spring.application.name}
+    # 最小空闲连接数
+    connectionMinimumIdleSize: 8
+    # 连接池大小
+    connectionPoolSize: 32
+    # 连接空闲超时，单位：毫秒
+    idleConnectionTimeout: 10000
+    # 命令等待超时，单位：毫秒
+    timeout: 3000
+    # 发布和订阅连接池大小
+    subscriptionConnectionPoolSize: 50
+
+mybatis-plus:
+  global-config:
+    db-column-underline: true
+    field-strategy: 2
+    refresh-mapper: true
+    db-config:
+      id-type: ASSIGN_ID
+  typeAliasesPackage: com.gp.entity
+  configuration:
+    cache-enabled: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    check-config-location: false
+  mapper-locations: classpath:mapper/*.xml
+
+
+oss:
+  endpoint: https://oss-cn-shanghai.aliyuncs.com
+  accessKeyId: key
+  accessKeySecret: key
+  bucketName: 1999oss
+sftp:
+  host: ip
+  port: 22
+  username: root
+  password: password
+gp:
+  minio:
+    endpointUrl: http://ip:9000
+    accessKey: key
+    secreKey: key
+    bucketName: redbook
+thread-pool:
+  enabled: false
+  queueCapacity: 128
+  keepAliveSeconds: 300
+ignore:
+  excludes:
+    - /*.html
+    - /**/*.html
+    - /**/*.css
+    - /**/*.js
+    - /favicon.ico
+    - /error
+    - /*/api-docs
+    - /*/api-docs/**
+    - /api/assets-service/close
